@@ -1,0 +1,31 @@
+<!-- templates/base.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Мой Python-блог{% endblock %}</title>
+    <!-- Подключаем внешний CSS файл -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Привет, меня зовут Игорь </h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('blog') }}">Блог</a></li>
+                <li><a href="{{ url_for('notes') }}">Дневник программиста</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [Ваше Имя]. Все права защищены.</p>
+    </footer>
+</body>
+</html>

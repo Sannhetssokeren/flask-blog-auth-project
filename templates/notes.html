@@ -1,0 +1,42 @@
+<!-- templates/notes.html -->
+
+{% extends "base.html" %}
+
+{% block title %}{{ super() }} - Дневник программиста{% endblock %}
+
+{% block content %}
+    <h2>Дневник программиста</h2>
+
+    <section id="add-note">
+        <h3>Добавить новую запись</h3>
+        <form method="POST">
+            <label for="title">Заголовок:</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="subtitle">Подзаголовок:</label>
+            <input type="text" id="subtitle" name="subtitle">
+
+            <label for="content">Текст записи:</label>
+            <textarea id="content" name="content" rows="5" cols="50" required></textarea>
+
+            <button type="submit">Добавить запись</button>
+        </form>
+    </section>
+
+    <section id="display-notes">
+        <h3>Записи в дневнике</h3>
+        {% if notes %}
+            {% for note in notes %}
+                <article class="note-entry">
+                    <h4>{{ note.title }}</h4>
+                    {% if note.subtitle %}
+                        <h5>{{ note.subtitle }}</h5> <!-- Отображаем подзаголовок, если он есть -->
+                    {% endif %}
+                    <p>{{ note.text }}</p>
+                </article>
+            {% endfor %}
+        {% else %}
+            <p>Записей пока нет.</p>
+        {% endif %}
+    </section>
+{% endblock %}
